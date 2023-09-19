@@ -1,7 +1,7 @@
 from rest_framework import generics
 from rest_framework.response import Response
-from .models import Project, ProjectImage
-from .serializers import ProjectSerializer, ProjectImageSerializer
+from .models import Project, BannerImage, ProjectImage
+from .serializers import ProjectSerializer, ProjectImageSerializer, BannerImageSerializer
 
 class ProjectListAPIView(generics.ListCreateAPIView):
     queryset = Project.objects.all()
@@ -10,6 +10,10 @@ class ProjectListAPIView(generics.ListCreateAPIView):
 class ProjectDetailAPIView(generics.RetrieveAPIView):
     queryset = Project.objects.all()
     serializer_class = ProjectSerializer
+
+class BannerImageListAPIView(generics.ListAPIView):
+    queryset = BannerImage.objects.all()
+    serializer_class = BannerImageSerializer
 
 class ProjectListByCategoryAPIView(generics.ListAPIView):
     serializer_class = ProjectSerializer

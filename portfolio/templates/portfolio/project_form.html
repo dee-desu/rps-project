@@ -7,7 +7,7 @@
     <h1>Create Project</h1>
     <form method="post" enctype="multipart/form-data">
         {% csrf_token %}
-        {{ form.as_p }}
+        <!-- {{ form.as_p }} -->
 
         <!-- Locations Container -->
         <div class="locations-container">
@@ -84,7 +84,7 @@
         </div>
 
         <!-- Add Image Button -->
-        <button type="button" id="add-image">Add Image</button>
+        
 
         <!-- JavaScript for dynamic addition of image input fields -->
         <script>

@@ -1,11 +1,12 @@
 from django.db import models
 from django.contrib.postgres.fields import ArrayField
+from django.utils import timezone
 
 class Category(models.Model):
-    name = models.CharField(max_length=100)
+    catname = models.CharField(max_length=100)
 
     def __str__(self):
-        return self.name
+        return self.catname
 
 class Project(models.Model):
     name = models.CharField(max_length=200)
@@ -24,3 +25,12 @@ class ProjectImage(models.Model):
 
     def __str__(self):
         return str(self.image)
+    
+class BannerImage(models.Model):
+    image = models.ImageField(upload_to='banner_images/')
+    created_at = models.DateTimeField(auto_now_add=True)
+
+
+
+    def __str__(self):
+        return str(self.image)   
