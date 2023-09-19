@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Portfolio - Project Detail</title>
+</head>
+<body>
+    <h1>{{ project.name }}</h1>
+    <p>Date: {{ project.date }}</p>
+    <p>Locations: {{ project.locations }}</p>
+    <p>Description: {{ project.description }}</p>
+    <p>Category: {{ project.category.name }}</p>
+
+    <!-- Display Images and Thumbnail -->
+    <h2>Images:</h2>
+    {% for image in project.images.all %}
+    <img src="{{ image.image.url }}" alt="{{ project.name }} Image">
+    {% endfor %}
+
+    <h2>Thumbnail:</h2>
+    <img src="{{ project.thumbnail.image.url }}" alt="{{ project.name }} Thumbnail">
+
+    <!-- Back to Project List Link -->
+    <a href="{% url 'project_list' %}">Back to Project List</a>
+</body>
+</html>

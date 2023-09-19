@@ -1,0 +1,12 @@
+version: '3'
+
+services:
+  postgres:
+    image: postgres:latest
+    container_name: rps_db
+    environment:
+      POSTGRES_DB: mydb
+      POSTGRES_USER: rps
+      POSTGRES_PASSWORD: rps1234
+    ports:
+      - "5432:5432"

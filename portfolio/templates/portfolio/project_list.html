@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Project List</title>
+</head>
+<body>
+    <h1>Project List</h1>
+
+    <ul>
+        {% for project in projects %}
+        <li>
+            <h2><a href="{% url 'project_detail' project.id %}">{{ project.name }}</a></h2>
+            <p>Date: {{ project.date }}</p>
+            <p>Category: {{ project.category }}</p>
+            <p>Locations: {{ project.locations }}</p>
+            <p>Description: {{ project.description }}</p>
+            <p>Thumbnail Image: <img src="{{ project.thumbnail.url }}" alt="{{ project.name }} thumbnail"></p>
+            
+            <!-- Display project images -->
+            <h3>Project Images:</h3>
+            <ul>
+                {% for image in project.images.all %}
+                <li><img src="{{ image.image.url }}" alt="{{ project.name }} image"></li>
+                {% endfor %}
+            </ul>
+            
+            <p><a href="{% url 'project_edit' project.id %}">Edit</a> | <a href="{% url 'project_delete' project.id %}">Delete</a></p>
+        </li>
+        {% endfor %}
+    </ul>
+
+    <p><a href="{% url 'project_create' %}">Create New Project</a></p>
+</body>
+</html>

@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Project Form</title>
+</head>
+<body>
+    <h1>Create Project</h1>
+    <form method="post" enctype="multipart/form-data">
+        {% csrf_token %}
+        {{ form.as_p }}
+
+        <!-- Locations Container -->
+        <div class="locations-container">
+            <!-- Initial Location Input Field -->
+            <input type="text" name="location_0" placeholder="Location" required>
+        </div>
+
+        <!-- Add Location Button -->
+        <button type="button" id="add-location">Add Location</button>
+
+        <!-- JavaScript for dynamic addition of location input fields -->
+        <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            // Get the "Add Location" button and the container where new fields will be added
+            const addLocationButton = document.getElementById("add-location");
+            const locationsContainer = document.querySelector(".locations-container");
+
+            // Counter to keep track of added location fields
+            let locationCounter = 1; // Start at 1 since the initial field is already present
+
+            // Event listener for the "Add Location" button
+            addLocationButton.addEventListener("click", function() {
+                // Create a new input field for location
+                const locationInput = document.createElement("input");
+                locationInput.type = "text";
+                locationInput.name = `location_${locationCounter}`;
+                locationInput.placeholder = "Location";
+                locationInput.required = true;
+
+                // Append the new location input field to the container
+                locationsContainer.appendChild(locationInput);
+
+                // Increment the location counter
+                locationCounter++;
+
+                // Limit the number of added location fields to 9
+                if (locationCounter > 9) {
+                    addLocationButton.disabled = true; // Disable the button when the limit is reached
+                }
+            });
+        });
+        </script>
+
+        <!-- Rest of the form fields -->
+        <!-- Date -->
+        <div class="field">
+            <label for="{{ form.date.id_for_label }}">Date:</label>
+            {{ form.date }}
+        </div>
+
+        <!-- Category -->
+        <div class="field">
+            <label for="{{ form.category.id_for_label }}">Category:</label>
+            {{ form.category }}
+        </div>
+
+        <!-- Description -->
+        <div class="field">
+            <label for="{{ form.description.id_for_label }}">Description:</label>
+            {{ form.description }}
+        </div>
+
+        <!-- Thumbnail Image -->
+        <div class="field">
+            <label for="{{ form.thumbnail.id_for_label }}">Thumbnail Image:</label>
+            {{ form.thumbnail }}
+        </div>
+
+        <!-- Images -->
+        <div class="field">
+            <label for="{{ form.images.id_for_label }}">Images:</label>
+            {{ form.images }}
+            <button type="button" id="add-image">Add Image</button>
+        </div>
+
+        <!-- Add Image Button -->
+        <button type="button" id="add-image">Add Image</button>
+
+        <!-- JavaScript for dynamic addition of image input fields -->
+        <script>
+        // JavaScript code for dynamically adding image input fields goes here
+        </script>
+
+        <button type="submit">Save</button>
+    </form>
+</body>
+</html>
